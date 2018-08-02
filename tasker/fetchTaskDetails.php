@@ -16,18 +16,18 @@
         }
 
     //Initialize variables
-        $category_name         = $_POST['category_name'];
+        $TASK_ID               = $_POST['TASK_ID'];
 
-        $available_tasks       = array();
+        $task_details          = array();
         $temp                  = array();
 
-        $query                 = "SELECT task.task_id, task.title, DATE_FORMAT(task.date_time_end,'%Y-%m-%d'), address.line_one, address.city, task.task_fee, task.status, user.profile_picture, user.first_name, user.last_name, task_category.name, task.image_one, task.image_two, task.description, DATE_FORMAT(task.date_time_posted,'%m-%d-%Y')
+        $query                 = "SELECT task.task_id, task.title, DATE_FORMAT(task.date_time_end,'%m-%d-%Y'), address.line_one, address.city, task.task_fee, task.status, user.profile_picture, user.first_name, user.last_name, task_category.name, task.image_one, task.image_two, task.description, DATE_FORMAT(task.date_time_posted,'%m-%d-%Y %H:%i:%s')
                                   FROM `task`
                                   INNER JOIN task_address ON task_address.task_address_id = task.task_id
                                   INNER JOIN address ON address.address_id = task_address.task_address_id
                                   INNER JOIN user ON user.user_id = task.task_giver_id
                                   INNER JOIN task_category ON task_category.task_category_id = task.task_category_id
-                                  WHERE task_category.name = '{$category_name}' AND task.status = 'AVAILABLE'";
+                                  WHERE task.task_id = '{$TASK_ID}' AND task.status = 'AVAILABLE'";
 
 //LOAD TASK CATEGORIES:
 
@@ -38,14 +38,10 @@
         
     while($preparedStatement->fetch())
     {
-        $timestamp = strtotime('2018-07-26');
-        
-        $day = date('l', $timestamp);
-
         $temp = array();
         $temp['task_id']            = $task_id; 
         $temp['title']              = $title; 
-        $temp['date_time_end']      = date('l', strtotime($date_time_end)).", ".date("m-d-Y", strtotime($date_time_end));
+        $temp['date_time_end']      = date('l', strtotime($date_time_end)).", ".$date_time_end;
         $temp['line_one']           = $line_one;
         $temp['city']               = $city;
         $temp['task_fee']           = $task_fee;
@@ -58,8 +54,8 @@
         $temp['image_two']          = str_replace('../..', '', $image_two);
         $temp['description']        = $description;
         $temp['date_time_posted']   = $date_time_posted;
-        array_push($available_tasks, $temp);
+        array_push($task_details, $temp);
     }
     
-    echo json_encode($available_tasks);
+    echo json_encode($task_details);
  ?>

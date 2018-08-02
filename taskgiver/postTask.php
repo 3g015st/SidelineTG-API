@@ -63,7 +63,7 @@
 
                 // Make task photos folder
                 global $TASK_IMAGE_FOLDER;
-                $TASK_IMAGE_FOLDER = "../uploads/images/task_imgs/$TASK_ID";
+                $TASK_IMAGE_FOLDER = "../../uploads/images/task_imgs/$TASK_ID";
                 if(!file_exists($TASK_IMAGE_FOLDER))
                 {
                     mkdir($TASK_IMAGE_FOLDER, 0777, true);

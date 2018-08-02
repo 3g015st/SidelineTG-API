@@ -36,7 +36,7 @@
         $temp = array();
         $temp['task_id']       = $task_id; 
         $temp['title']         = $title; 
-        $temp['image_one']     = str_replace('..', '', $image_one);
+        $temp['image_one']     = str_replace('../..', '', $image_one);
         $temp['date_time_end'] = date('l', strtotime($date_time_end)).", ".$date_time_end;
         $temp['address']       = $address;
         $temp['task_fee']      = $task_fee;
