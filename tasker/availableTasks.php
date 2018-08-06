@@ -38,10 +38,6 @@
         
     while($preparedStatement->fetch())
     {
-        $timestamp = strtotime('2018-07-26');
-        
-        $day = date('l', $timestamp);
-
         $temp = array();
         $temp['task_id']            = $task_id; 
         $temp['title']              = $title; 

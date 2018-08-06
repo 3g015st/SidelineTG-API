@@ -27,7 +27,7 @@
                                   INNER JOIN address ON address.address_id = task_address.task_address_id
                                   INNER JOIN user ON user.user_id = task.task_giver_id
                                   INNER JOIN task_category ON task_category.task_category_id = task.task_category_id
-                                  WHERE task.task_id = '{$TASK_ID}' AND task.status = 'AVAILABLE'";
+                                  WHERE task.task_id = '{$TASK_ID}'";
 
 //LOAD TASK CATEGORIES:
 
